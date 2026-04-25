@@ -4,6 +4,7 @@
 🧩 1. Real-Time CRM → AEM Ingestion
 
 Goal: Capture field failure events instantly
+
 <img width="2567" height="1681" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/cbd596e0-58cc-48de-8597-172061f90074" />
 
 
