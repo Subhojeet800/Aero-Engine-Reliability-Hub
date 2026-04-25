@@ -1,0 +1,56 @@
+MRAC → AEM Delta Ingestion:
+
+SELECT *
+FROM MRAC_EVENTS
+WHERE last_updated > @last_sync_time
+
+AEM Merge Strategy:
+
+MERGE AEM_EVENTS AS target
+USING MRAC_STAGE AS source
+ON target.event_id = source.event_id
+
+WHEN MATCHED THEN
+    UPDATE SET 
+        target.external_flag = 1,
+        target.mrac_data = source.data,
+        target.updated_at = GETDATE()
+
+WHEN NOT MATCHED THEN
+    INSERT (event_id, source_type, created_at)
+    VALUES (source.event_id, 'MRAC', GETDATE());
+
+
+Final Structure:
+
+global-engine-reliability-hub/
+│
+├── architecture/
+│   ├── final-architecture.png
+│   ├── flowchart.mmd
+│
+├── adf-pipelines/
+│   ├── crm_to_aem.json
+│   ├── mrac_to_aem.json     ✅ NEW
+│   ├── aem_to_mrac.json
+│   ├── aem_to_fem.json
+│
+├── functions/
+│   ├── crm_ingestion/
+│   ├── reconciliation_engine/
+│   ├── override_api/
+│
+├── sql/
+│   ├── aem_schema.sql
+│   ├── mrac_schema.sql
+│   ├── fem_schema.sql
+│   ├── merge_logic.sql
+│
+├── data-model/
+│   ├── entity_relationship.png
+│
+├── power-bi/
+│   ├── combined_dashboard.pbix
+│   ├── mrac_dashboard.pbix
+│
+└── README.md
