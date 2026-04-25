@@ -117,10 +117,7 @@ Azure Synapse Analytics (optional) → Advanced querying
 Flexible reporting:
 Combined view (AEM hub)
 MRAC-only view
-FEM outputs
-🧱 Optional (BUT MAKES YOU STAND OUT)
-
-Add these to look senior-level 👇
+FEM output
 
 🔐 Security & Governance
 Azure Key Vault
@@ -133,6 +130,7 @@ Gold → Curated
 📈 Monitoring
 Azure Monitor
 Application Insights
+
 🧠 Final Architecture Summary
 Layer	Azure Service
 Streaming	Event Hubs
